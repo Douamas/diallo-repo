@@ -1,0 +1,282 @@
+				Généralités
+
+1-) Spring est différent de JEE ( EJB, Servlets, JSP, ..)
+2-) Spring 5 est compatible avec Java 8 minimum
+3-) Spring 5 n'est pas compatible avec Tomcat 10 car tomcat 10 ne supporte que Jakarta et non javax
+4-) Pour créer un projet Spring à partir d'un projet Java, il faut télécharger les .jar Spring à partir du site officiel de Spring puis les rajouter dans un dossier lib sur le projet java et enfin rajouter ces .jar dans le build path
+
+
+				IOC ( Spring Container ) avec XML
+1-) L'inversion de contrôle ou IOC est le fait d'externaliser la création et la gestion des objets
+2-) Les fonctions principales de Spring container sont :
+	==> Création et gestion d'objets (IOC : Injection Of Control)
+	==> Injection les dépendances des objects (DI : Dependancy Injection)
+3-) il existe 3 façons de configurer Spring Container :
+	==> En utilisant un fichier XML de configuration ( ancienne méthode )
+	==> En utilisant les annotations Java ( plus courant)
+	==> En utilisant le code Java ( courant également)
+4-) Voici la procédure de développement avec Spring
+	4-a) Configurer les Spring beans ( avec un fichier XML (applicationContext.xml), les annotations ou avec le code java )
+	4-b) Créer un conteneur Spring
+	4-c) Récupérer les beans créer par le conteneur Spring
+5-) Configuration avec le fichier applicationContext.xml
+	5-a) id : c'est un alias et correspond à l'identifiant du Bean : c'est ce que l'application 			        
+	va utiliser quand il voudra récupérer un object dans le conteneur Spring
+	5-b) class : correspond au nom (chemin) complet de la classe : Corresspondant également à 							l'implémentera réelle de l'object.
+
+6-) Spring Container ou conteneur Spring est généralement appelé ApplicationContext, selon son implémentation, il peut avoir des noms différents : ClassPathXmlApplicationContext
+
+
+
+				DI (Dependancy Injection) avec XML
+1-) C'est le fait de déléguer la création des autres objets dont a besoin notre objet et de lui fournir ces objets au moment de sa création.
+4-) il y'a plusieurs façons de faire un DI avec Spring et les deux plus courants sont:
+	4-a) L'injection par constructeur
+	4-b) L'injection par setter
+5-) procédure pas à pas de mise en place d'un DI par constructeur
+	5-a) Définir les interfaces et les classes de dépendances de notre objet	
+	5-b) Créer un constructeur dans notre classe pour injecter les dépendances ( en 1-) )
+	5-c) Configurer l'injection de dépendance dans le fichier de configuration Spring (applicationContext.xml)
+6-)procédure pas à pas de mise en place d'un DI par setters
+	6-a) créer les setters dans ta classe pour faire l'injection
+	6-b) Configurer l'injection de dépendance dans le fichier de configuration Spring
+NB : on peut également injecter des valeurs comme des string ( adresse email, nom, ...) en utilisant cette technique d'injection par setters.
+7-) procédure pas à pas de mise en place d'un DI par setters en utilisant des valeurs lues à partir d'un fichier Properties
+	7-a) Créer le fichier Properties
+	7-b) charger le fichier Properties dans le fichier de configuration Spring
+	7-c) référencer les valeurs du fichier Properties ( lire les valeurs pour alimenter les champs à injecter)
+
+
+
+				Beans scope ( ou cycle de vie d'un bean)
+1-) Bean scores fait référence au cycle de vie d'un Bean
+	1-) Combien de temps a vécu le bean
+	2-) combien d'instances du bean ont été crée
+	3-) comment est partagé le bean dans l'environnement Spring
+2-) le scope par défaut d'un bean est Singleton
+3-) c'est quoi un Singleton
+	3-a) Le conteneur Spring crée uniquement une instance de ce bean par défaut.
+	3-b) le bean est en cache dans la mémoire
+	3-c) Toutes requêtes vers ce bean va retourner une référence partagé du même bean
+4-) voici les différents scopes d'un bean
+	4-a) Singleton : une seule instante du bean est crée par le conteneur et partagé par toutes les requêtes vers le conteneur
+	4-b) prototype : chaque requête vers le conteneur entraîne la création d'une nouvelle instance de ce bean
+	4-c) request : sa portée est limitée à une requête web HTTP. cette scope est uniquement utilisée par les applications web 
+	4-d) session : sa portée est limitée à une session web HTTP. cette scope est uniquement utilisée par les applications web 
+	4-e) global-session : sa portée est limitée à une session web global HTTP. cette scope est uniquement utilisée par les applications web 
+5-) Méthodes(ou Hooks) dans le cycle de vie d'un Bean : on peut ajouter du code customisé lors de l'initialisation ou la destruction d'un Bean.
+	5-a) appeler des méthodes en lien avec la logique métier
+	5-b) initialiser des ressources ( db, sockets, fichiers, ...)
+	5-c) supprimer des ressources ( db, sockets, fichiers, ...)
+
+
+
+					IOC avec annotations 
+1-) C'est quoi une annotation java
+	1-a) c'est un label ( ou marqueur) spécial ajouté à une classe java
+	1-b) fournit des méta data sur la classe
+	1-c) traité à la compilation ou à l'exécution pour un traitement spécial.
+2-) Pourquoi configurer Spring avec les annotations
+	2-a) La configuration XML peut être verbeuse pour des projets ou nous avons une centaine de Bean à configurer
+	2-b)  Les annotations minimisent la configuration XML
+3-) procédure lecture annotation pour une classe java
+	3-a) Spring va scanner la classe java pour trouver les annotations 
+	3-b) Spring enregistre automatiquement le Bean dans son container
+4-) procédure de développement avec les annotations
+	4-a) Permettre le Scan de @Component dans le fichier de configuration Spring
+	4-b) Ajouter l'annotation @Component à la classe java
+	4-c) Récupérer le Bean à partir du container Spring ( pareille qu'avec IOC en XML)
+	
+	
+
+
+					DI avec annotations (autowired)
+1-) C'est quoi Spring autoWiring
+	1-a) pour le DI, Spring peut utiliser l'auto câblage (autogire)
+	1-b) Spring va chercher une classe qui correspond à la propriétés
+		==> correspondance par type : class ou interface
+	1-c) Spring va injecter cette classe automatiquement 
+2-) il y'a trois types d'injection avec autogire :
+	2-a) injection par constructeur 
+	2-b) injection par setter
+	2-c) injection par méthode
+	2-d) injection par champ
+3-) procédure pas à pas de mise en oeuvre d'une injection par constructeur 
+	3-a) définir l'interface et la classe de dépendance
+	3-b) créer un constructeur dans ta classe pour l'injection 
+	3-c) configurer l'injection de dépendance avec l'annotation autowired 
+4-) A partir d Spring 4.3 l'annotation @Autowired n'est pas obligatoire quand la classe cible ne contient qu'un seul constructeur. Si par contre il y'a plusieurs constructeurs, au moins l'un des constructeurs doit avoir l'annotation pour indiquer au container Spring quel constructeur de la classe utiliser. 
+5-) Au cas ou notre interface possède plusieurs implémentations, l'annotation @Qualifier nous permet de dire à Spring quelle implémenteron considérer pour faire le DI, pour cela il faut juste fournir à @Qualifier laid du Bean correspondant.
+
+
+
+					init et destroya méthode avec les annotations 
+1-) Procédure pas à pas de mise en place des init et destroyât mettons avec les annotations 
+	1-a) Définir les méthodes à appeler au moment du init et du destroyât
+	2-b) Ajouter les annotations @PostConstruct et @PreDestroy
+
+
+
+					Configuration Spring avec du code Java (sans XML)
+1-) procédure de configuration pas à pas
+	1-a) Créer une classe Java et l'annoter avec @Configuration
+	1-b) Ajouter ensuite l'annotation de Scan @ComponentScan (optionnel)
+	1-c) Lire la classe Java de configuration Spring
+	1-d) Récupérer le bean du conteneur Spring.
+2-) Procédure pas à pas d'injection de dépendance en utilisant du code Java
+	2-a) Définir la méthode pour exposer le bean
+	2-b) injecter les dépendances
+	2-c) Lire la classe Java de configuration spring
+	2-c) récupérer le bean du conteneur Spring
+3-) Injecter des valeurs à partir d'un fichier Properties avec Spring Java Code
+	3-a) créer le fichier Properties
+	3-b) charger le fichier Properties dans la config Spring
+	3-c) référencer les valeurs à partir du fichier properties 
+
+
+
+
+
+
+                                      SPRING MVC
+1-) C'est quoi Spring MVC
+	1-a) c'est un framework pour développer des applications web en java
+	1-b) il est basé sur le design pattern MVC
+	1-c) Exploite les fonctionnalités de Spring core (IOC,DI)
+2-) avantage de Spring MVC
+	2-a) construire une application web en utilisant Java
+	2-b) Tirer parti d'un ensemble de composants UI
+	2-c) aide à gérer l'état de l'application pour les requêtes web
+	2-d) traiter les données d'un formulaire 
+	2-e) une configuration flexible pour la couche vue.
+3-) composants d'une application Spring MVC
+	3-a) un ensemble de pages web pour mettre en place les composants IHM
+	3-b) une collection de jeans Spring (controllers, services, etc)
+	3-c) une configuration Spring (xml, annotations ou java)
+4-) comment spring MVC fonctionne en coulisse 
+	navigateur-->(requête http)--> Front contrôler --> modele --> contrôleur --> modele --> View template --> (requête http) --> navigateur
+5-) le front contrôleur
+	5-a) il est également appelé DispatcherServlet
+		5-a-1) il fait parti du framework Spring
+6-) le controller
+	6-a) il est crée par le développeur
+	6-b) il contient la logique métier
+		==> gère la requête http
+		==> stock et récupère les données (db, web service, ..)
+		==> place les données dans le modèle
+	6-c) renvoie vers la bonne View template
+7-) le modèle
+	7-a) Le modèle contient vos données
+	7-b) stock et récupère les données via le backend
+		==> base de données, web services, etc
+		==> utilise un bean spring si on souhaite
+	7-c) place tes données dans le modèle
+		==> les données peuvent être n'importe quel objet java ou collections
+8-) view template 
+	8-a) spring MVC test flexible
+		==> supporte plusieurs types de vies templates ( JSP+ JSTL, thymeleaf, ...)
+		==> la vue JSP+JSTL est le plus courant
+	8-b) le développeur crée la page 
+		==> qui affiche le données
+	
+9-) configuration pas à pas de spring MVC
+	9-a) ajouter les configurations dans le fichier WEB-INF/web.xml
+		==> configurer spring MVC Dispatcher Servlet
+		==> Mettre en place l'URL Mapping au niveau du Dispatcher Servlet
+	9-b) ajouter les configurations dans le fichier WEB-INF/spring-mvc-demo-servlet.xml
+		==> ajouter une configuration pour le composant spring de Scan
+		==> ajouter une configuration pour la conversion , le formatage et la validation	
+		==> configurer le resolver de vue Spring de MVC
+10-) Mise en place pas à pas du controlleur et de la vue
+	1O-a) créer la classe contrôleur
+	10-b) définir les méthodes du contrôleur
+	10-c) ajouter le mapping des requêtes sur les méthodes du controlleur
+	10-d) retourner le nom de la vue
+	10-e) Développer la vue (page)
+
+11-) processus de lecture pas à pas des données d'un formulaire.
+	11-a) créer la classe controlleur
+	11-b) afficher le formulaire HTML
+		==> créer la méthode du controlleur pour afficher le formulaire HTML
+		==> créer la page vue pour le formulaire HTML
+	11-c) traiter le formulaire HTML
+		==> créer la méthode du controlleur pour traiter les données du formulaire.
+		==> developper la page vue pour la confirmation 
+12-) Le modèle Spring
+	12-a) le modèle est un container pour les données de notre application 
+	12-b) Dans notre controller, nous pouvons :
+		==> mettre n'importe quel types de données dans notre modèle ( objets, String, données provenant de la BD, ...)
+	12-c) Ta page vue (jsp) peux accèder aux données à partir du modèle.
+13-) HttpServletRequest peut être remplacé par l'annotation @RequestParam offert par Spring, exemple:
+		==> @RequestParam("studentName") String theName : permet de mapper le paramètre theName studentName directement dans la variable theName 
+
+14-) ajouter un RequestMapping au controller
+	14-a) sert de mapping parent au controller
+	14-b) tous les mapping sur les méthodes du controlleur sont liés au mapping parent du controller ( comme un système de répertoire et sous répertoires)
+
+
+
+
+/////////////// hibernate ///////////////
+1-) Hibernate est un framework pour persister et enregistrer les objets Java dans une base de données 
+2-) Avantages de Hibernate
+	2-a) Il gère tout le code SQL de bas niveau ce qui minimise la quantité de code JDBC que vous devez développer
+	2-a) Hibernate permet de faire le Mapping Objet Relationnel (ORM) 
+3-) Hibernate utilise JDBC pour l'accès à la BD
+4-) Hibernate 5.2 utilise Java 8
+
+
+
+
+
+
+
+/////////////////////////////// Spring Boot ///////////////////////////
+1-) le problème 
+	1-a) Quelle archétype Maven utiliser 
+	1-b) quelle dépendance Maven ai je besoin
+	1-c) Comment mettre en place ma config ( xml ou java )
+	1-d) Comment doit je installer le serveur d'application (Tomcat, Jboss, ...)
+2) La solution : Spring Boot
+	2-a) Facilite le développement avec Spring
+	2-b) Minimize la charge de configuration manuelle
+	2-c) Automatise la configuration en se basant sur les fichiers properties et les classpath JAR
+	2-d) aide à résoudre les conflits de dépendances 
+	2-e) fournit un serveur Http embarqué ( Tomcat, Jetty, ..) donc on peut commencer rapidement
+3-) Spring Initializer ( fournit par Spring Boot)
+	3-) Créée rapidement un projet Spring de démarrage
+4-) mvnw 
+	4-1) est un wrapper maven
+		==> permet de télécharger et d'éxécuter la bonne version aven si maven n'est pas installé sur notre poste
+5-) L'annotation @SpringBootApplication contient les annotations @ComponentScan, @Configuration et @EnableAutoConfiguration
+6-) L'artifact Spring-boot-stater permet d'avoir un package de dépendances avec les bonnes versions de dépendanaces 
+7-) Si tous les packages ne sont pas des sous packages à partir de la classe main, il faut utiliser scanBasePackage dans l'annotation @SpringBootApplication pour préciser tous les packages à scanner
+8-) SpringBoot Staters
+	==> fournit une liste précise des dépendances maven
+	==> c'est une collection de dépendances regroupées ensemble.
+	==> Cette collection a été testé et validé par les développeurs Spring
+	==> Facilite la prise en main des développeurs Spring
+	==> réduit la charge ed configuration Maven
+9-) avantages de Spring-boot-stater-Parents
+	==> Configuration par défaut de Maven
+	==> Gestion des dépendances 
+		On utilise la version du parent uniquement 
+		spring-boot-stater-* hérites de la version de dépendances des parents du parent 
+	==> Configuration par défaut des plugins Spring-boot
+10-) Spring boot Des Tools permet de prendre en compte automatiquement les modifications sur notre code en redémarrant l'application.
+	Il faut juste ajouter la dépendance spring-boot-devtools sur ton pom.xml pour intégrer des tools
+11-) Spring boot actuator permet :
+	==> d'exposer des endpoints pour surveiller  et gérer ton application
+	==> d'avoir à disposition des fonctionnalités  DevOps
+	==> D'ajouter facilement des dépendances dans le POM.xml
+	==> les endroits REST sont automatiquement ajoutées à l'application 
+
+
+//////////// JPA /////////
+1-) JPA = Java Persistence API
+	==> c'est l'PI standard pour la mapping Object Relationnel
+	==> JPA est une spécification 
+		: est composée interfaces 
+		: a besoin d'un implémentation pour être utilisable
+	==> Entity manager provient de JPA
+
