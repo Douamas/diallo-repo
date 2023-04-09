@@ -1,0 +1,28 @@
+package com.labs.java.demo;
+
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
+import java.util.Locale;
+
+public class LocalisingDates {
+
+	public static void main(String[] args) {
+
+			Locale locUS = Locale.US;
+			Locale locFrench = new Locale("fr", "FR");
+			Locale locGermain = Locale.GERMANY;
+			
+			LocalDateTime ldt = LocalDateTime.now();
+			
+			System.out.println(ldt);  // 2023-04-02T19:25:19.028752
+
+			
+			DateTimeFormatter dateMediumStyle = DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM);
+			// Using the US locale
+			System.out.println(dateMediumStyle.withLocale(locUS).format(ldt));
+			
+
+	}
+
+}

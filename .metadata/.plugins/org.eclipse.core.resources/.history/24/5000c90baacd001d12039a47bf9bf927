@@ -1,0 +1,28 @@
+package com.labs.java.demo;
+
+import java.util.Set;
+
+public class CollectionSet {
+
+	public static void main(String[] args) {
+		
+		factoryMethods();
+
+	}
+	
+	
+	public static void factoryMethods() {
+		
+		// unmodifiable sets returned
+		
+		Set<String> of = Set.of("a", "b", "c");
+		Set<String> copy = Set.copyOf(of);
+		
+		//of.add("d");      // UnsupportedOperationException
+		copy.add("d");
+		
+		//of.remove("a");
+
+	}
+
+}

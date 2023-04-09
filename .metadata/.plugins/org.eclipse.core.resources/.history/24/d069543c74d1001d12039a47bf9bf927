@@ -1,0 +1,27 @@
+package com.labs.java.demo;
+
+import java.util.Locale;
+
+public class CreatingLocal {
+
+	public static void main(String[] args) {
+
+		// 1. Constructors
+		System.out.println(new Locale("en")); // en
+
+		Locale locEnglishGB = new Locale("en", "GB"); // en_GB
+		System.out.println(locEnglishGB.getDisplayLanguage()); // anglais
+		System.out.println(locEnglishGB.getDisplayCountry()); // Royaume-Uni
+
+		// 2. Built-in constants
+		System.out.println(Locale.FRENCH); // en
+		Locale locFrenchFrance = Locale.FRANCE;
+		System.out.println(locEnglishGB.getDisplayLanguage()); // anglais
+		System.out.println(locEnglishGB.getDisplayCountry()); // Royaume-Uni
+
+		
+		
+
+	}
+
+}

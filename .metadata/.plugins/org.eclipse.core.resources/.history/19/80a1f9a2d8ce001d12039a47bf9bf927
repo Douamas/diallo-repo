@@ -1,0 +1,37 @@
+package com.labs.java.demo;
+
+import java.util.Map;
+import java.util.TreeMap;
+
+public class CollectionsMap {
+
+	public static void main(String[] args) {
+
+		Map<String, Integer> map = new TreeMap<>(); // sorted by keys
+
+		map.put("John", 18);
+		map.put("Mary", 21);
+		map.put("Chris", 33);
+
+		System.out.println(map.containsKey("John")); // true
+		System.out.println(map.containsValue(18)); // true
+		System.out.println(map.isEmpty()); // false
+		System.out.println(map.get("John")); // 18
+
+		for (String name : map.keySet()) {
+
+			System.out.println(name); // Chris, John, Mary
+		}
+
+		for (Integer age : map.values()) {
+
+			System.out.println(age); // 33, 18, 21
+		}
+
+		System.out.println(map.containsKey("Paul")); // false
+		System.out.println(map.containsValue(21)); // true
+		System.out.println(map.size()); // 3
+		map.clear(); // 0
+		System.out.println(map.size());
+	}
+}
