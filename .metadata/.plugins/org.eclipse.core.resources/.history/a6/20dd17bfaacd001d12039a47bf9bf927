@@ -1,0 +1,48 @@
+package com.labs.java.demo;
+
+import java.util.Set;
+import java.util.TreeSet;
+
+public class CollectionSet {
+
+	public static void main(String[] args) {
+		
+		//factoryMethods();
+		treeSet() ;
+
+	}
+	
+	
+	public static void factoryMethods() {
+		
+		// unmodifiable sets returned
+		
+		Set<String> of = Set.of("a", "b", "c");
+		Set<String> copy = Set.copyOf(of);
+		
+		of.add("d");      // UnsupportedOperationException
+		copy.add("d");    // UnsupportedOperationException
+		
+		of.remove("a");     // UnsupportedOperationException
+
+	}
+	
+	
+	public static void treeSet() {
+		
+		// SUU - Sets are Unique and Unordered
+		
+		Set<String> names = new TreeSet<>();
+		
+		names.add("John");
+		names.add("John");
+		names.add("Helen");
+		names.add("Anne");
+		
+		// No Duplicate, elements are sorted alphabetically
+		
+		names.forEach(System.out::println);
+		
+	}
+
+}

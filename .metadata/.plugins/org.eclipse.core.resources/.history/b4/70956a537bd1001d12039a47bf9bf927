@@ -1,0 +1,18 @@
+package com.labs.java.demo;
+
+import java.time.LocalDateTime;
+import java.util.Locale;
+
+public class LocalisingDates {
+
+	public static void main(String[] args) {
+
+			Locale locUS = Locale.US;
+			Locale locFrench = new Locale("fr", "FR");
+			Locale locGermain = Locale.GERMANY;
+			
+			LocalDateTime ldt = LocalDateTime.now();
+
+	}
+
+}

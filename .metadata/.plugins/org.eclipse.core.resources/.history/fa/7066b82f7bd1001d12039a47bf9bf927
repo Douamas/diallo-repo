@@ -1,0 +1,13 @@
+package com.labs.java.demo;
+
+import java.util.Locale;
+
+public class LocalisingDates {
+
+	public static void main(String[] args) {
+
+			Locale locUS = Locale.US;
+			Locale locFrench = new Locale("fr", "FR");
+	}
+
+}

@@ -1,0 +1,72 @@
+package com.labs.java.demo;
+
+import java.util.HashMap;
+import java.util.Map;
+
+public class Hashing {
+
+	private static Map<Contacte, String> map = new HashMap<>();
+
+	public static void main(String[] args) {
+
+		Contacte john = new Contacte("john", 33);
+		Contacte peter = new Contacte("john", 34);
+
+		System.out.println("john.hashCode() is " + john.hashCode()); // 58388
+		System.out.println("peter.hashCode() is " + peter.hashCode()); // 58477
+		map.put(john, "Irish");
+		map.put(peter, "American");
+		System.out.println(map.get(john));  // Irish
+		System.out.println(map.get(peter));  // American
+		
+		Contacte mary = new Contacte("mary", 21);
+		System.out.println("mary.hashCode() is " + mary.hashCode()); // 57320
+		
+		map.put(mary, "engineer");
+		otherScope();
+
+
+
+
+
+	}
+	
+	
+	public static void otherScope() {
+		
+		Contacte anotherMary = new Contacte("mary", 21);  // reconstruct "anotherMary"
+		System.out.println("anotherMary.hashCode() is " + anotherMary.hashCode()); // 57320
+
+
+	}
+
+}
+
+class Contacte {
+
+	private int age;
+	private String name;
+
+	Contacte(String name, int age) {
+		this.age = age;
+		this.name = name;
+
+	}
+
+	public int hashCode() { // both instance variables 'age' and 'name' are used
+		int hash = 7;
+		hash = 89 * hash + this.age;
+		hash = 89 * hash + this.name.length();
+
+		return hash;
+	}
+
+	public boolean equals(Object obj) {
+
+		if (obj instanceof Contacte) {
+			Contacte otherContact = (Contacte) obj;
+			return this.name.equals(otherContact.name) && this.age == otherContact.age;
+		}
+		return false;
+	}
+}

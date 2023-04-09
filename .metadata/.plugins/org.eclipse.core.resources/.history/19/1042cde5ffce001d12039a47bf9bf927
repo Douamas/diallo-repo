@@ -1,0 +1,36 @@
+package com.labs.java.demo;
+
+import java.util.LinkedList;
+import java.util.Queue;
+
+public class CollectionsQueue {
+
+	public static void main(String[] args) {
+
+	}
+
+	public static void linkedListQueue() {
+
+		// A FIFO queue
+		Queue<Integer> queue = new LinkedList<>();
+
+		// add() inserts into queue (throws exception if no space exists - if capacity
+		// restricted)
+		// offers() inserts into queue (returns false if no space exists - capacity
+		// restricted)
+		queue.add(1); // Head -> [1]
+		queue.offer(2); // Head -> [1, 2]
+		queue.add(3); // Head -> [1, 2, 3]
+		queue.offer(4); // Head -> [1, 2, 3, 4]
+		
+		// elements() retrieve but does not remove the head of the queue (throws exception if queue empty)
+		// peek() retrieve but does not remove the head of the queue (return null if queue empty)
+		
+		System.out.println(queue.element());  1
+		
+		
+
+
+	}
+
+}

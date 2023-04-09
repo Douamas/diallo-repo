@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<list key="EGit.KnownHosts">
+		<item value="bitbucket.org"/>
+		<item value="git.eclipse.org"/>
+		<item value="github.com"/>
+	</list>
+	<list key="RepositorySelectionPage.UsedUris">
+		<item value="https://github.com/swkBerlin/kata-bootstraps"/>
+		<item value="https://github.com/swkBerlin/kata-bootstraps/tree/master/java.git"/>
+		<item value="https://github.com:8080/swkBerlin/kata-bootstraps/tree/master/java"/>
+		<item value="https://github.com/swkBerlin/kata-bootstraps/tree/master/java"/>
+		<item value="https://github.com/kaouthar2021/Project_DA_Java_EN_Come_to_the_Rescue_of_a_Java_Application/tree/v1.3"/>
+		<item value="https://github.com/kaouthar2021/Project_DA_Java_EN_Come_to_the_Rescue_of_a_Java_Application/tree/v1.3/Project02Eclipse"/>
+	</list>
+	<section name="GitImportWizard">
+	</section>
+</section>
