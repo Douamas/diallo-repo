@@ -2,6 +2,12 @@
 <section name="Workbench">
 	<section name="MavenProjectImportWizardPage">
 		<list key="rootDirectory">
+			<item value="/Users/douamas/Downloads/01-spring-boot-rest-crud/src"/>
+			<item value="/Users/douamas/Downloads/01-spring-boot-rest-crud"/>
+			<item value="/Users/douamas/Downloads/demo"/>
+			<item value="/Users/douamas/Downloads/demo 5"/>
+			<item value="/Users/douamas/eclipse-workspace/01-cruddemov2-student"/>
+			<item value="/Users/douamas/Documents/Udemy/dev-spring-boot-New/mycoolappNew"/>
 			<item value="/Users/douamas/Downloads/demo 4"/>
 			<item value="/Users/douamas/Downloads/demo 2"/>
 			<item value="/Users/douamas/eclipse-workspace/kata-bootstraps/java"/>
